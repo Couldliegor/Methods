@@ -1,6 +1,12 @@
 package Main;
 
 public class Main {
+    public static void main(String[] args) {
+        task1();
+        task2();
+        task3();
+    }
+
     public static int year(int some) {
         if (some % 100 == 0 && some % 400 != 0) {
             System.out.println(some + " year is not leap");
@@ -41,9 +47,25 @@ public class Main {
         }
         return OS;
     }
-    public static void main(String[] args) {
-        task1();
-        task2();
+
+    public static int Delivery(int distance) {
+        boolean OK = distance <= 100;
+        int deliveryInDays;
+        if (OK) {
+            if (distance <= 20 && distance > 0) {
+                deliveryInDays = 1;
+                return deliveryInDays;
+            } else if (20 < distance && distance <= 60) {
+                deliveryInDays = 1 + 1;
+                return deliveryInDays;
+            } else if (60 < distance && distance <= 100) {
+                deliveryInDays = 1 + 1 + 1;
+                return deliveryInDays;
+            }
+        } else {
+            return 0;
+        }
+        return distance;
     }
 
     public static void task1() {
@@ -63,5 +85,18 @@ public class Main {
         //enter 0 or 1 here
         OC(version, year);
     }
-//    hardly done, actually donno how to change an int version in method OC, to massive int[] smth = new int[1]; smth[0] = 0;//or 1 if you want ))
+
+    //    hardly done, actually donno how to change an int version in method OC, to massive int[] smth = new int[1]; smth[0] = 0;//or 1 if you want ))
+    public static void task3() {
+        System.out.println("\nTASK3");
+        int deliveryDistance = 95;
+        if (Delivery(deliveryDistance) == 0) {
+            throw new RuntimeException("ERROR CAN'T DELIVER!");
+        } else if (Delivery(deliveryDistance) >=  2 || Delivery(deliveryDistance) <=  3) {
+            System.out.println("The deliver will take " + Delivery(deliveryDistance) + " days.");
+        } else if (Delivery(deliveryDistance) == 1) {
+            System.out.println("The deliver will take " + Delivery(deliveryDistance) + " day.");
+        }
+    }
+    //done, and it was really fun!!!!
 }
