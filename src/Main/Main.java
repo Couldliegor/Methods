@@ -7,60 +7,46 @@ public class Main {
         task3();
     }
 
-    public static int year(int some) {
-        if (some % 100 == 0 && some % 400 != 0) {
-            System.out.println(some + " year is not leap");
-        } else if (some % 4 == 0) {
-            System.out.println(some + " year is leap!");
+    public static void yearLeapCounting(int some) {
+        if (some % 4 == 0 && some % 100 != 0 || some % 400 == 0) {
+            System.out.println(some + " year is leap");
         } else {
             System.out.println(some + " year is not leap");
         }
-        return some;
     }
 
-    public static int OC(int OS, int year) {
+    public static void oCAndYearChecking(int oS, int year) {
         boolean goodVersion = year >= 2015;
         boolean earlyVersion = year < 2015;
         if (goodVersion) {
-            switch (OS) {
-                case 0:
-                    System.out.println("Download version for iOS from this link: ");
-                    break;
-                case 1:
-                    System.out.println("Download version for Android from this link: ");
-                    break;
-                default:
-                    System.out.println("Sorry, we haven't done a website for your OS yet!");
+            if (oS == 0) {
+                System.out.println("Download version for iOS from this link: ");
+            } else if (oS == 1) {
+                System.out.println("Download version for Android from this link: ");
+            } else {
+                System.out.println("Sorry, we haven't done a website for your OS yet!");
             }
-        } else if (earlyVersion) {
-            switch (OS) {
-                case 0:
-                    System.out.println("Download light version from this link: ");
-                    break;
-                case 1:
-                    System.out.println("Download light version for Android from this link: ");
-                    break;
-                default:
-                    System.out.println("Sorry, we haven't done a website for your OS yet!");
-                    //push
+        if (earlyVersion) {
+            if (oS == 0) {
+                System.out.println("Download light version from this link: ");
+            } else if (oS == 1) {
+                System.out.println("Download light version for Android from this link: ");
+            } else {
+                System.out.println("Sorry, we haven't done a website for your OS yet!");
+            }
             }
         }
-        return OS;
     }
 
-    public static int Delivery(int distance) {
-        boolean OK = distance <= 100;
-        int deliveryInDays;
-        if (OK) {
+    public static int totalDaysCountingByDistance(int distance) {
+        boolean deliverable = distance <= 100;
+        if (deliverable) {
             if (distance <= 20 && distance > 0) {
-                deliveryInDays = 1;
-                return deliveryInDays;
+                return 1;
             } else if (20 < distance && distance <= 60) {
-                deliveryInDays = 1 + 1;
-                return deliveryInDays;
+                return 1 + 1;
             } else if (60 < distance && distance <= 100) {
-                deliveryInDays = 1 + 1 + 1;
-                return deliveryInDays;
+                return 1 + 1 + 1;
             }
         } else {
             return 0;
@@ -70,32 +56,32 @@ public class Main {
 
     public static void task1() {
         System.out.println("TASK1");
-        int i = (int) (Math.random() * 4000); // enter year here
-        year(i);
+        int currentYear = (int) (Math.random() * 4000); // enter year here
+        yearLeapCounting(currentYear);
     }
 
     public static void task2() {
         System.out.println("\nTASK2");
         int version = 1;//enter version here
-        int minYear = 1975;
-        int maxYear = 2125;
+        int minYear = 1900;
+        int maxYear = 2100;
         int middleYear = maxYear - minYear;
         int year = (int) (Math.random() * ++middleYear) + minYear;
         System.out.println(year);
-        //enter 0 or 1 here
-        OC(version, year);
+        oCAndYearChecking(version, year);
     }
 
     //    hardly done, actually donno how to change an int version in method OC, to massive int[] smth = new int[1]; smth[0] = 0;//or 1 if you want ))
     public static void task3() {
         System.out.println("\nTASK3");
         int deliveryDistance = 95;
-        if (Delivery(deliveryDistance) == 0) {
+        int totalDays = totalDaysCountingByDistance(deliveryDistance);
+        if (totalDays == 0) {
             throw new RuntimeException("ERROR CAN'T DELIVER!");
-        } else if (Delivery(deliveryDistance) >=  2 || Delivery(deliveryDistance) <=  3) {
-            System.out.println("The deliver will take " + Delivery(deliveryDistance) + " days.");
-        } else if (Delivery(deliveryDistance) == 1) {
-            System.out.println("The deliver will take " + Delivery(deliveryDistance) + " day.");
+        } else if (totalDays >=  2 || totalDays <=  3) {
+            System.out.println("The deliver will take " + totalDays + " days.");
+        } else if (totalDays == 1) {
+            System.out.println("The deliver will take " + totalDays + " day.");
         }
     }
     //done, and it was really fun!!!!
